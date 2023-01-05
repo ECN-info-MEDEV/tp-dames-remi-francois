@@ -20,8 +20,11 @@ import javax.swing.JFileChooser;
 public abstract class SaveManager {
     public static final String SEP = ", ";
     
-    public static void save(Board b) throws IOException{
+    public static void save(Board b) throws IOException, NullPointerException{
         File file = chooseFile();
+        if (file == null) {
+            throw new NullPointerException();
+        }
         BufferedWriter fileBuffer = new BufferedWriter(new FileWriter(file.getAbsolutePath()));
         fileBuffer.write("DAME 1.0");
         fileBuffer.newLine();
