@@ -43,10 +43,11 @@ public class Board {
         while (pos == null) {
             System.out.println("Sélectionner un pion de la fome : x[ESPACE]y ");
             String posString = s.nextLine();
+            pos = null;
             try {
                 String[] positions = posString.split(" ");
                 pos = new Point(Integer.parseInt(positions[0]),Integer.parseInt(positions[1]));
-            } catch (NumberFormatException e) {}
+            } catch (Exception e) {}
             if (pos != null ) {
                 if (plateau[pos.getX()][pos.getY()] == null || plateau[pos.getX()][pos.getY()].getPlayer() != turn) {
                     pos=null;
