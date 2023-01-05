@@ -32,7 +32,6 @@ public class Pion {
         Point newPos = new Point(pos.getX() + dep.getX(), pos.getY() + dep.getY());
         LinkedList<Pion> toRemove = new LinkedList<>(); // Pions à supprimer
         if (newPos.isValid()){
-            System.out.println("Le point est valide");
             while (newPos.isValid() && plateau[newPos.getX()][newPos.getY()] != null){
                 if (plateau[newPos.getX()][newPos.getY()].getPlayer() != player){
                     toRemove.add(plateau[newPos.getX()][newPos.getY()]);
