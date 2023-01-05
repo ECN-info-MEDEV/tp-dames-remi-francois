@@ -46,6 +46,9 @@ public abstract class SaveManager {
     
     public static Board load() throws FileNotFoundException, IOException{
         File file = chooseFile();
+        if (file == null) {
+            return null;
+        }
         BufferedReader reader = new BufferedReader(new FileReader(file));
         Board b = new Board();
         String line = reader.readLine();

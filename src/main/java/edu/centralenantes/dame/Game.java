@@ -6,18 +6,34 @@
 package edu.centralenantes.dame;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 /**
  *
  * @author inky19
  */
 public class Game {
-
+    
+    public static Scanner s = new Scanner(System.in);
+    
     public static void main(String[] args) throws IOException {
         //Board b = SaveManager.load();
-        Board b = new Board();
-        b.plateau[0][0] = new Pion(0, 0, 1, b.plateau);
-        b.plateau[3][9] = null;
+        Board b = null;
+        while (b == null) {
+            System.out.println("Bienvenue dans le jeu de Dame. Vous pouvez :\n[n] Commencer une nouvelle partie\n[o] Ouvrir une partie existante");
+            switch(s.nextLine()) {
+                case ("n") :
+                    b = new Board();
+                    break;
+                case ("o") :
+                    b = SaveManager.load();
+                    break;
+                default :
+                    System.out.println("Mauvaise touche entrée");
+                    break;
+            }
+        }
+
         while(true){
             b.nextTurn();
         }
