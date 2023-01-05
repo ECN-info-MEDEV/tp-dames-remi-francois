@@ -89,7 +89,7 @@ public class Board {
         for (int i=0; i < 10; i++) {
             s+= "---";
         }
-        s+= "\n";
+        s+= " \n";
         for (int y=0; y < 10; y++) {
             s+= y + " |";
             for (int x=0; x < 10; x++) {
