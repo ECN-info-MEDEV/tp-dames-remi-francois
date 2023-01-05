@@ -4,7 +4,10 @@
  */
 package edu.centralenantes.dame;
 
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -37,8 +40,20 @@ public class Board {
     
     public Point requestPos() {
         Point pos;
-        System.out.println("Sélectionner un pion de la fome : x[ESPACE]y ");
+        System.out.println("Sélectionner un pion de la fome : x[ESPACE]y. Appuyez sur [s] pour sauvegarder la partie.");
         String posString = Game.s.nextLine();
+        if (posString.equals("s")) {
+            try {
+                SaveManager.save(this);
+                System.out.println("Partie sauvegardée");
+            } catch (IOException ex) {
+                System.out.println("La sauvegarde a échouée");
+            } catch (NullPointerException ex) {
+                System.out.println("La sauvegarde a été annulée");
+            }
+            System.out.println("Sélectionner un pion de la fome : x[ESPACE]y.");
+            posString = Game.s.nextLine();
+        }
         pos = null;
         try {
             String[] positions = posString.split(" ");
