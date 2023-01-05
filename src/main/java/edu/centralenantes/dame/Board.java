@@ -13,7 +13,6 @@ import java.util.Scanner;
 public class Board {
     public Pion[][] plateau;
     public int turn;
-    public Scanner s;
     
     public Board() {
         plateau = new Pion[10][10];
@@ -39,7 +38,7 @@ public class Board {
     public Point requestPos() {
         Point pos;
         System.out.println("Sélectionner un pion de la fome : x[ESPACE]y ");
-        String posString = s.nextLine();
+        String posString = Game.s.nextLine();
         pos = null;
         try {
             String[] positions = posString.split(" ");
@@ -57,7 +56,7 @@ public class Board {
         System.out.println(this);
         System.out.println("C'est au tour du joueur "+turn);
         Point pos = null;
-        s = new Scanner(System.in);
+        
         boolean cancel = true;
         while (cancel) {
             cancel = false;
@@ -69,7 +68,7 @@ public class Board {
             pos = null;
             while (pos == null && !cancel) {
                 System.out.println("Choisir direction, gauche [g] ou droite [d] ou [c] pour choisir un autre pion");
-                String posString = s.nextLine();
+                String posString = Game.s.nextLine();
                 if (posString==null) {
                     pos = null;
                 } else if (posString.equals("g")) {
