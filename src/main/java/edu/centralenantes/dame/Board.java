@@ -35,6 +35,24 @@ public class Board {
         
     }
     
+    
+    public Point requestPos() {
+        Point pos;
+        System.out.println("Sélectionner un pion de la fome : x[ESPACE]y ");
+        String posString = s.nextLine();
+        pos = null;
+        try {
+            String[] positions = posString.split(" ");
+            pos = new Point(Integer.parseInt(positions[0]),Integer.parseInt(positions[1]));
+        } catch (Exception e) {}
+        if (pos != null ) {
+            if (plateau[pos.getX()][pos.getY()] == null || plateau[pos.getX()][pos.getY()].getPlayer() != turn) {
+                pos=null;
+            }
+        }
+        return pos;
+    }
+    
     public void nextTurn() {
         System.out.println(this);
         System.out.println("C'est au tour du joueur "+turn);
@@ -44,23 +62,10 @@ public class Board {
         while (cancel) {
             cancel = false;
             while (pos == null) {
-                System.out.println("Sélectionner un pion de la fome : x[ESPACE]y ");
-                String posString = s.nextLine();
-                pos = null;
-                try {
-                    String[] positions = posString.split(" ");
-                    pos = new Point(Integer.parseInt(positions[0]),Integer.parseInt(positions[1]));
-                } catch (Exception e) {}
-                if (pos != null ) {
-                    if (plateau[pos.getX()][pos.getY()] == null || plateau[pos.getX()][pos.getY()].getPlayer() != turn) {
-                        pos=null;
-                    }
-                }  
+                pos = requestPos();
             }
-
             System.out.println("Pion "+pos+" sélectionné\n");
             Pion pion = plateau[pos.getX()][pos.getY()];
-            
             pos = null;
             while (pos == null && !cancel) {
                 System.out.println("Choisir direction, gauche [g] ou droite [d] ou [c] pour choisir un autre pion");
