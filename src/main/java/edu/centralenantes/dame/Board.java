@@ -65,7 +65,9 @@ public class Board {
             while (pos == null && !cancel) {
                 System.out.println("Choisir direction, gauche [g] ou droite [d] ou [c] pour choisir un autre pion");
                 String posString = s.nextLine();
-                if (posString.equals("g")) {
+                if (posString==null) {
+                    pos = null;
+                } else if (posString.equals("g")) {
                     pos = new Point(-1,1 - pion.getPlayer()*2);
                 } else if (posString.equals("d")) {
                     pos = new Point(1,1 - pion.getPlayer()*2);
@@ -74,7 +76,7 @@ public class Board {
                     pos = null;
                     pion = null;
                 }
-                if (pion != null && !pion.move(pos)) {
+                if (pos != null && !pion.move(pos)) {
                     pos = null;
                 }
             }  
